@@ -103,7 +103,7 @@ h1 {
     border-radius: 30px;
     border: 1px solid var(--glass-border);
     background: rgba(22, 27, 34, 0.8);
-    color: white;
+    color: rgb(233, 143, 143);
     font-size: 1rem;
     outline: none;
     transition: all 0.3s ease;
