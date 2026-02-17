@@ -1,0 +1,6 @@
+@echo off
+echo Starting Google Cloud Summit Website...
+echo Opening http://127.0.0.1:5000/ in your browser...
+start http://127.0.0.1:5000/
+py app.py
+pause

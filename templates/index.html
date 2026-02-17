@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ event.name }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="background-glow"></div>
+    
+    <header class="hero">
+        <div class="container">
+            <div class="event-meta">
+                <span class="pill date">{{ event.date }}</span>
+                <span class="pill location">{{ event.location }}</span>
+            </div>
+            <h1>{{ event.name }}</h1>
+            <p class="description">{{ event.description }}</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="controls">
+            <input type="text" id="searchInput" placeholder="Search talks, speakers, or categories..." aria-label="Search">
+        </section>
+
+        <div class="schedule-timeline" id="scheduleGrid">
+            {% for talk in talks %}
+                <!-- Talk Card -->
+                <article class="talk-card" data-category="{{ talk.category }}">
+                    <div class="time-column">
+                        <span class="time">{{ talk.time }}</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="content-column">
+                        <div class="card-glass">
+                            <div class="card-header">
+                                <span class="category-tag">{{ talk.category }}</span>
+                                <span class="talk-id">#{{ talk.id }}</span>
+                            </div>
+                            <h3>{{ talk.title }}</h3>
+                            <p class="talk-desc">{{ talk.description }}</p>
+                            <div class="speakers">
+                                {% for speaker in talk.speakers %}
+                                    <a href="{{ speaker.linkedin }}" target="_blank" class="speaker">
+                                        <div class="avatar-placeholder">{{ speaker.first_name[0] }}{{ speaker.last_name[0] }}</div>
+                                        <span>{{ speaker.first_name }} {{ speaker.last_name }}</span>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                {% if loop.index == 3 %}
+                <!-- Lunch Break -->
+                <div class="lunch-break">
+                    <div class="time-column">
+                        <span class="time">12:00 - 13:00</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="content-column">
+                        <div class="lunch-card">
+                            <span class="icon">🍽️</span>
+                            <h3>Lunch Break</h3>
+                            <p>Recharge and network at the cafeteria.</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        
+        <div id="noResults" class="hidden">
+            <p>No talks found matching your search.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Google Cloud Summit. Built with Flask.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

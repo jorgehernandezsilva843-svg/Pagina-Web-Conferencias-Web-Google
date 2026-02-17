@@ -1,0 +1,312 @@
+:root {
+    --bg-color: #0d1117;
+    --text-color: #c9d1d9;
+    --accent-blue: #4285F4;
+    --accent-red: #EA4335;
+    --accent-yellow: #FBBC05;
+    --accent-green: #34A853;
+    --glass-bg: rgba(22, 27, 34, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --card-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-stack);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Background Glow */
+.background-glow {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(66, 133, 244, 0.15), transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+    animation: pulse 10s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.1); opacity: 1; }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 80px 20px 40px;
+    background: linear-gradient(to bottom, rgba(13, 17, 23, 0) 0%, var(--bg-color) 100%);
+}
+
+.event-meta {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.pill {
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-red), var(--accent-yellow), var(--accent-green));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 15px;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #8b949e;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Controls */
+.controls {
+    margin: 40px 0;
+    text-align: center;
+}
+
+#searchInput {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px 25px;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    background: rgba(22, 27, 34, 0.8);
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+#searchInput:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 15px rgba(66, 133, 244, 0.3);
+}
+
+/* Schedule Grid */
+.schedule-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 60px;
+    position: relative; /* For the vertical line? Maybe simpler without exact line */
+}
+
+.talk-card, .lunch-break {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.time-column {
+    min-width: 120px;
+    text-align: right;
+    position: relative;
+    padding-top: 25px; /* Visual alignment */
+}
+
+.time {
+    font-weight: 600;
+    color: var(--accent-blue);
+    font-size: 1.1rem;
+}
+
+.content-column {
+    flex: 1;
+}
+
+.card-glass, .lunch-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 25px;
+    backdrop-filter: blur(12px);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-glass:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.category-tag {
+    background: rgba(66, 133, 244, 0.1);
+    color: var(--accent-blue);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+.talk-id {
+    color: #484f58;
+    font-family: monospace;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.talk-desc {
+    color: #8b949e;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.speakers {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.speaker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 6px 12px;
+    border-radius: 30px;
+    transition: background 0.2s;
+}
+
+.speaker:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.avatar-placeholder {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+}
+
+/* Lunch Break */
+.lunch-break {
+    opacity: 0.8;
+}
+
+.lunch-card {
+    background: rgba(255, 255, 255, 0.02);
+    border-style: dashed;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 25px;
+}
+
+.lunch-card .icon {
+    font-size: 2rem;
+}
+
+.lunch-card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.lunch-card p {
+    margin: 0;
+    color: #8b949e;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 40px;
+    color: #484f58;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .talk-card, .lunch-break {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .time-column {
+        text-align: left;
+        min-width: auto;
+        padding-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .time-column .line {
+        display: none;
+    }
+    
+    .content-column {
+        width: 100%;
+    }
+    
+    .card-glass {
+        padding: 20px;
+    }
+}
+
+.visible {
+    display: flex !important;
+}
+.hidden {
+    display: none !important;
+}
